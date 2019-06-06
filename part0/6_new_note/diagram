@@ -1,0 +1,15 @@
+note over browser:
+default event for posting is replaced
+end note
+note over browser:
+browser adds element to list
+and renders the new list
+end note
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note over server:
+inforamtion posted on server 
+end note
+server-->browser: 201 Responce code
+note over browser:
+no need to do rerender
+end note
