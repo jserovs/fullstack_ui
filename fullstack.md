@@ -7,3 +7,9 @@
 ## Status
     [x] part 0
     [ ] part 1
+
+## location
+    /mnt/c/dev/fullstack
+
+## usefull docs
+    https://daveceddia.com/usestate-hook-examples/
