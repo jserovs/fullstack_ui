@@ -9,6 +9,8 @@ const App = () => {
 
   const [ counter, setCounter ] = useState(0)
 
+  let count = good+neutral+bad
+
   return (
     <div>
         <h1>Give Feedback</h1>
@@ -25,6 +27,12 @@ const App = () => {
       <div>good {good}</div>
       <div>neutral {neutral}</div>
       <div>bad {bad}</div>
+      <div>all {count}</div>
+
+
+      <div>average {(good-bad)/count}</div>
+
+      <div>positive {good/count*100} %</div>
     </div>
   )
 }
