@@ -6,8 +6,7 @@ const Statistics = (props) => {
 
     if (count > 0 ) {
         return (
-            <div>
-            <h1>Stats</h1>
+            <div>            
             <div>good {props.good}</div>
             <div>neutral {props.neutral}</div>
             <div>bad {props.bad}</div>
@@ -32,10 +31,6 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const [ counter, setCounter ] = useState(0)
-
-
-
   return (
     <div>
         <h1>Give Feedback</h1>
@@ -48,6 +43,7 @@ const App = () => {
       <button onClick={() => setBad(bad + 1)}>
         Bad
       </button>
+      <h1>Stats</h1>
       <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   )
