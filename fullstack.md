@@ -5,8 +5,12 @@
     https://www.websequencediagrams.com/
 
 ## Status
-    [x] part 0
-    [ ] part 1
+[x] part 0
+[x] part 1
+[ ] part 2
+[ ] part 3
+[ ] part 4
+
 
 ## location
     /mnt/c/dev/fullstack
