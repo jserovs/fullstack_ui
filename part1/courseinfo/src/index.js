@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Course from './'
 
 const App = () => {
   const course = 'Half Stack application development'
