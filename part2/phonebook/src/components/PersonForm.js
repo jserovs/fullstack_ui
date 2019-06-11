@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Button from './Button'
-import Axios from 'axios';
 
 const PersonForm = ({ persons, setPersons }) => {
 
@@ -21,15 +20,17 @@ const PersonForm = ({ persons, setPersons }) => {
         console.log(persons)
         event.preventDefault()
         const copy = [...persons]
-        
-        if (persons.find(person => person.name === newName) === undefined && persons.find(person => person.phone === newPhone) === undefined) {
+
+        if (persons.find(person => person.name === newName) === undefined
+            && persons.find(person => person.phone === newPhone) === undefined) {
+
             let newPerson = { name: newName, number: newPhone }
             copy.push(newPerson)
             setPersons(copy)
 
             axios.post('http://localhost:3001/persons', newPerson)
                 .then(response => (console.log(response)))
-            
+
         } else {
             window.alert(`${newName} is already added to phonebook`)
         }
@@ -42,7 +43,7 @@ const PersonForm = ({ persons, setPersons }) => {
             <div>
                 phone: <input value={newPhone} onChange={handlePhoneChange} />
             </div>
-            
+
             <div>
                 <Button text='add' handleClick={addPerson} />
             </div>
