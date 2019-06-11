@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import Button from './Button'
+import Axios from 'axios';
 
 const PersonForm = ({ persons, setPersons }) => {
 
@@ -19,9 +21,15 @@ const PersonForm = ({ persons, setPersons }) => {
         console.log(persons)
         event.preventDefault()
         const copy = [...persons]
+        
         if (persons.find(person => person.name === newName) === undefined && persons.find(person => person.phone === newPhone) === undefined) {
-            copy.push({ name: newName, number: newPhone })
+            let newPerson = { name: newName, number: newPhone }
+            copy.push(newPerson)
             setPersons(copy)
+
+            axios.post('http://localhost:3001/persons', newPerson)
+                .then(response => (console.log(response)))
+            
         } else {
             window.alert(`${newName} is already added to phonebook`)
         }

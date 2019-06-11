@@ -7,7 +7,7 @@
 ## Status
 [x] part 0
 [x] part 1
-[ ] part 2
+[ ] part 2 (12-14 to be completed later)
 [ ] part 3
 [ ] part 4
 

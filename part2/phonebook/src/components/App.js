@@ -5,6 +5,9 @@ import Persons from './Persons'
 import Filter from './Filter'
 
 const App = () => {
+
+  const baseUrl = 'http://localhost:3001/notes'
+
   const [persons, setPersons] = useState([])
 
   useEffect(()=>{
@@ -15,6 +18,9 @@ const App = () => {
         setPersons(response.data)
       })
   },[])
+
+
+
 
   const [filter, setFilter] = useState("")
 
