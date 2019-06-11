@@ -25,7 +25,7 @@ const App = (props) => {
         setSelected(rand);
     }
 
-    const vote = (props) => {
+    const vote = () => {
         const copy = [...points]
         copy[selected] += 1
         setPoints(copy)
