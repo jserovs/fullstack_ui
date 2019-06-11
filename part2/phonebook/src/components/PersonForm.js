@@ -9,6 +9,8 @@ const PersonForm = ({ persons, setPersons }) => {
 
     const [newPhone, setNewPhone] = useState('')
 
+    const [applyMEssage, setApplyMessage] = useState(null)
+
     const handleNameChange = (event) => {
         setNewName(event.target.value)
     }
@@ -17,7 +19,17 @@ const PersonForm = ({ persons, setPersons }) => {
         setNewPhone(event.target.value)
     }
 
-
+    const Notification = ({ message }) => {
+        if (message === null) {
+          return null
+        }
+      
+        return (
+          <div className="notification">
+            {message}
+          </div>
+        )
+      }
 
     const addPerson = (event) => {
         console.log(persons)
@@ -32,10 +44,17 @@ const PersonForm = ({ persons, setPersons }) => {
             setPersons(copy)
 
             axios.post('http://localhost:3001/persons', newPerson)
-                .then(response => (console.log(response)))
+                .then(response => {
+                    console.log(response)
+                    setApplyMessage(`${newName} was added` )
+                    setTimeout(()=> {
+                        setApplyMessage(null)
+                    },5000)
+                })
 
             setNewName("")
             setNewPhone("")
+
 
         } else {
             const edit = copy.filter(pers => {return pers.name===newName})[0]
@@ -45,11 +64,17 @@ const PersonForm = ({ persons, setPersons }) => {
                 copy[copy.indexOf(edit)] = { name: newName, number: newPhone, id: edit.id }
                 personsService.update(edit.id, { name: newName, number: newPhone, id: edit.id })
                 setPersons(copy)
+                setApplyMessage(`${newName} updated` )
+                    setTimeout(()=> {
+                        setApplyMessage(null)
+                    },5000)
                 
             }
         }
     }
     return (
+        <div>
+        <Notification message={applyMEssage} />
         <form>
             <div>
                 name: <input value={newName} onChange={handleNameChange} />
@@ -62,6 +87,7 @@ const PersonForm = ({ persons, setPersons }) => {
                 <Button text='add' handleClick={addPerson} />
             </div>
         </form>
+        </div>
     )
 }
 
