@@ -12,18 +12,36 @@ const App = () => {
     personsService.getAll().then(response => {
       setPersons(response.data)
     })
-  },[])
+  }, [])
+
+  const [applyMessage, setApplyMessage] = useState(
+    {message: null, style: null}
+  )
 
   const [filter, setFilter] = useState("")
 
+  const Notification = ({ message, style }) => {
+    console.log("style: "+style + " message: " + message)
+    if (message === null) {
+      return null
+    }
+    return (
+      <div className={style}>
+        {message}
+      </div>
+    )
+  }
+
+
   return (
     <div>
+      <Notification message={applyMessage.message} style={applyMessage.style}/>
       <h2>Phonebook</h2>
       <Filter filter={filter} setFilter={setFilter} />
       <h3>Add a new</h3>
-      <PersonForm persons={persons} setPersons={setPersons} />
+      <PersonForm persons={persons} setPersons={setPersons} applyMessage={applyMessage} setApplyMessage={setApplyMessage} />
       <h3>Numbers</h3>
-      <Persons persons={persons} setPersons={setPersons} filter={filter}/>
+      <Persons persons={persons} setPersons={setPersons} filter={filter} setApplyMessage={setApplyMessage} />
     </div>
   )
 }
