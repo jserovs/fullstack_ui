@@ -11,7 +11,7 @@ const App = () => {
     console.log('effect')
     axios.get('http://localhost:8110/persons')
       .then(response => {
-        console.log('got date')
+        console.log('got data')
         setPersons(response.data)
       })
   },[])
