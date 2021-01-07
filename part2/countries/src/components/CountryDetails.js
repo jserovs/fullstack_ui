@@ -9,7 +9,6 @@ const CountryDetails = ({country}) => {
 
     return (
         <div>
-        <h3>{country.name}</h3>
         <p>Capital: {country.capital}</p>
         <p>Population: {country.population}</p>
         <p>Flag:</p>

@@ -1,62 +1,58 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Country from './Country';
 import CountryDetails from './CountryDetails';
-import Button from './Button';
 
-const Countries = ({ countries, filter }) => {
+const Countries = ({ countries, filter, setFilter }) => {
 
     let toShow
-
-    const [country, setDetailCountry] = useState('');
-
-
-    const handleShowCountryDetails= (event) => {
-        event.preventDefault();
-        console.log("oops");
-        return (
-            <div>oops</div>
-        )
-    }
 
     if (filter === "") {
         toShow = [...countries]
     } else {
         toShow = countries.filter(country => country.name.includes(filter));
-        if (Object.keys(toShow).length > 10) {
+
+        let showNumber =Object.keys(toShow).length;
+        console.log (showNumber)
+
+        if (showNumber > 10) {
             return (
                 <div>More than 10 results</div>
             )
         }
-
-        if (Object.keys(toShow).length <= 10) {
+        if (showNumber > 1 && showNumber <=10) {
+            
             return (
                 toShow.map(country => {
                     return (
-                        <div>
+                        <div key={country.name}>
                             <Country key={country.name} country={country} />
-                            <Button text="show details" handleClick={handleShowCountryDetails} country={country}/>
+                            <button onClick={() => setFilter(country.name)}>Say Hello</button>
+                            {/* <Button text="show details" onClick={() => alert("Hello" + country.name)}/> */}
                         </div>)
                 })
             )
-        }
-
+        }        
         if (Object.keys(toShow).length === 1) {
 
             return (
                 toShow.map(() => {
                     return (
-                        toShow.map(country => <CountryDetails key={country.name} country={country} />)
+                        toShow.map(country => 
+                            <div>
+                                <Country key={country.name} country={country}/>
+                                <CountryDetails key={country.name} country={country}/>
+                            </div>
+                            )
                     )
                 })
             )
         }
-
     }
 
     return (
         toShow.map(country => {
             return (
-                <div>
+                <div key={country.name}>
                     <Country key={country.name} country={country} />
                 </div>)
         })
