@@ -25,7 +25,7 @@ const PersonForm = ({ persons, setPersons, applyMessage, setApplyMessage }) => {
 
         if (persons.find(person => person.name === newName) === undefined
             && persons.find(person => person.phone === newPhone) === undefined) {
-            let newPerson = { name: newName, number: newPhone, id: copy.length + 1 }
+            let newPerson = { name: newName, number: newPhone, id: Math.max.apply(Math, copy.map((current)=> current.id )) + 1 }
             copy.push(newPerson)
             setPersons(copy)
             personsService.create(newPerson,
